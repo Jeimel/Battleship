@@ -12,12 +12,12 @@ impl MonteCarlo {
         for _ in 0..self.n {
             let mut board = Board::random(&self.ships);
 
-            for i in 0..Board::WIDTH * Board::HEIGHT {
+            for result in &mut results {
                 let max_index = board.get_max_density_index().unwrap();
                 board.shoot(max_index % Board::WIDTH, max_index / Board::WIDTH);
 
                 if board.is_over() {
-                    results[i] += 1;
+                    *result += 1;
 
                     break;
                 }
@@ -25,13 +25,12 @@ impl MonteCarlo {
         }
 
         let mut sum = 0;
-        for i in 0..results.len() {
-            sum += results[i];
+        for value in &mut results {
+            sum += *value;
 
-            results[i] = sum;
+            *value = sum;
         }
 
         println!("{:?}", results);
-        println!("{}", results[44]);
     }
 }

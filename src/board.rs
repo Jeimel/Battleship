@@ -45,7 +45,7 @@ impl Board {
     pub fn shoot(&mut self, x: usize, y: usize) -> Hit {
         assert!(x < Board::WIDTH && y < Board::HEIGHT);
 
-        let grid = Bitboard(1 << y * Board::WIDTH + x);
+        let grid = Bitboard(1 << (y * Board::WIDTH + x));
 
         for i in 0..self.ships.len() {
             let board = self.ships[i].1;
