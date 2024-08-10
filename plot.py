@@ -18,7 +18,8 @@ def plot(data: list) -> None:
     plt.xlim(0, 99)
     plt.grid(axis="y")
 
-    plt.gca().yaxis.set_major_formatter(mtick.PercentFormatter(xmax=1.0))
+    plt.axhline(y=0.05, color="r", linestyle="-")
+    plt.gca().yaxis.set_major_formatter(mtick.PercentFormatter(xmax=0.1))
 
     plt.show()
 
