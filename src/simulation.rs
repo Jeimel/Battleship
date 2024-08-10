@@ -1,17 +1,17 @@
 use battleship::board::{Board, Direction, Ship};
 use std::time::{SystemTime, UNIX_EPOCH};
 
-pub struct MonteCarlo {
+pub struct Simulation {
     pub n: usize,
     pub ships: Vec<Ship>,
 }
 
-impl MonteCarlo {
+impl Simulation {
     pub fn run(&self) {
         let mut results = vec![0usize; Board::WIDTH * Board::HEIGHT];
 
         for _ in 0..self.n {
-            let mut board = MonteCarlo::random(&self.ships);
+            let mut board = Simulation::random(&self.ships);
 
             for result in &mut results {
                 let max_index = board.max_density_index().unwrap();
